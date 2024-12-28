@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Middle Finger Light Animation</title>
+  <title>Middle Finger Animation</title>
   <style>
     body {
       display: flex;
@@ -14,58 +14,60 @@
       background-color: #000;
       color: #fff;
       font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
     .middle-finger {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 50px;
+      font-size: 100px;
+      animation: bounce 1s infinite alternate;
+      color: red;
     }
 
-    .line {
-      margin: 5px 0;
-      font-size: 50px;
-      animation: lightUp 2s infinite;
-    }
-
-    .line:nth-child(1) {
-      animation-delay: 0s;
-    }
-
-    .line:nth-child(2) {
-      animation-delay: 0.5s;
-    }
-
-    .line:nth-child(3) {
-      animation-delay: 1s;
-    }
-
-    @keyframes lightUp {
-      0%, 100% {
-        color: red;
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
       }
-      50% {
-        color: green;
+      100% {
+        transform: translateY(-20px);
       }
     }
 
-    video {
-      margin-top: 20px;
-      width: 80%;
-      border: 2px solid #fff;
+    audio {
+      position: absolute;
+      bottom: 20px;
+    }
+
+    button {
+      position: absolute;
+      bottom: 60px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: green;
     }
   </style>
 </head>
 <body>
-  <div class="middle-finger">
-    <div class="line">🖕</div>
-    <div class="line">🖕</div>
-    <div class="line">🖕</div>
-    <video controls>
-      <source src="your-video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+  <div class="middle-finger">🖕</div>
+
+  <button onclick="playAudio()">Play Voice</button>
+  <audio id="voice">
+    <source src="your-audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function playAudio() {
+      const audio = document.getElementById('voice');
+      audio.play();
+    }
+  </script>
 </body>
 </html>
